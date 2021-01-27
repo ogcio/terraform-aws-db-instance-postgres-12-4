@@ -13,7 +13,7 @@ variable "security_group_ids"           { default = [] }
 
 
 resource "aws_db_subnet_group" "default" {
-  name          = "${var.name}-db-instance-security-group"
+  name          = "${var.name}-db-subnet-group"
   subnet_ids    = var.subnets
 }
 
