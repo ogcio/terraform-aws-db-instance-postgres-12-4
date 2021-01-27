@@ -79,6 +79,13 @@ resource "aws_db_instance" "default" {
   }
 }
 
+
+resource "aws_db_snapshot" "default" {
+  db_instance_identifier = aws_db_instance.default.id
+  db_snapshot_identifier = "${var.name}-snapshot"
+}
+
+
 output "address"      { value = aws_db_instance.default.address }
 output "arn"          { value = aws_db_instance.default.arn }
 output "db_name"      { value = aws_db_instance.default.name }
