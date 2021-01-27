@@ -8,8 +8,8 @@ variable "db_allocated_storage"         { default = 20 }
 variable "db_instance_class"            { default = "db.t2.micro" }
 variable "name"                         { default = "Postgres 12.4 database" }
 variable "publicly_accessible"          { default = true }
-variable "subnets"                      { default = [] }
-variable "security_group_ids"           { default = [] }
+variable "subnets"                      {  }
+variable "security_group_ids"           {  }
 
 
 resource "aws_db_subnet_group" "default" {
