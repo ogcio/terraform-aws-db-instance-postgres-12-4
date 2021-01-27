@@ -1,13 +1,13 @@
+variable "backup_retention_period"      { default = 30 }
 variable "db_name"                      {  }
 variable "db_username"                  {  }
 variable "db_port"                      { default = 5432 }
 variable "db_engine_version"            { default = "12.4" }
 variable "db_password"                  {  }
 variable "db_allocated_storage"         { default = 20 }
-variable "db_instance_class"            {  }
-variable "db_backup_retention_period"   { default = 30 }
-variable "db_publicly_accessible"       { default = true }
+variable "db_instance_class"            { default = "db.t2.micro" }
 variable "name"                         { default = "Postgres 12.4 database" }
+variable "publicly_accessible"          { default = true }
 variable "subnets"                      { default = [] }
 variable "security_group_ids"           { default = [] }
 
@@ -55,7 +55,7 @@ resource "aws_db_instance" "default" {
   allow_major_version_upgrade = false
   apply_immediately           = true
   auto_minor_version_upgrade  = false
-  backup_retention_period     = var.db_backup_retention_period
+  backup_retention_period     = var.backup_retention_period
   backup_window               = "01:00-03:00"
   db_subnet_group_name        = aws_db_subnet_group.default.name
   engine                      = "postgres"
@@ -68,7 +68,7 @@ resource "aws_db_instance" "default" {
   name                        = var.db_name
   parameter_group_name        = aws_db_parameter_group.default.id
   password                    = var.db_password
-  publicly_accessible         = var.db_publicly_accessible
+  publicly_accessible         = var.publicly_accessible
   skip_final_snapshot         = true
   storage_type                = "gp2"
   username                    = var.db_username
@@ -81,8 +81,6 @@ resource "aws_db_instance" "default" {
 
 output "address"      { value = aws_db_instance.default.address }
 output "arn"          { value = aws_db_instance.default.arn }
-output "id"           { value = aws_db_instance.default.id }
 output "db_name"      { value = aws_db_instance.default.name }
 output "db_port"      { value = aws_db_instance.default.port }
 output "db_username"  { value = aws_db_instance.default.username }
-output "resource_id"  { value = aws_db_instance.default.address }
