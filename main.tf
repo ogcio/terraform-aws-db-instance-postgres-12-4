@@ -10,6 +10,7 @@ variable "name"                         { default = "Postgres 12.4 database" }
 variable "publicly_accessible"          { default = true }
 variable "subnets"                      {  }
 variable "security_group_ids"           {  }
+variable "create_snapshot"              { default =  true }
 
 
 resource "aws_db_subnet_group" "default" {
@@ -81,6 +82,7 @@ resource "aws_db_instance" "default" {
 
 
 resource "aws_db_snapshot" "default" {
+  count = var.create_snapshot ? 1 : 0
   db_instance_identifier = aws_db_instance.default.id
   db_snapshot_identifier = "${var.name}-snapshot"
 }
