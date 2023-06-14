@@ -65,7 +65,7 @@ resource "aws_db_instance" "default" {
   maintenance_window          = "Mon:03:00-Mon:05:00"
   monitoring_interval         = "0"
   multi_az                    = true
-  db_name                        = var.db_name
+  name                        = var.db_name
   parameter_group_name        = aws_db_parameter_group.default.id
   password                    = var.db_password
   publicly_accessible         = var.publicly_accessible
@@ -88,6 +88,6 @@ resource "aws_db_snapshot" "default" {
 
 output "address"      { value = aws_db_instance.default.address }
 output "arn"          { value = aws_db_instance.default.arn }
-output "db_name"      { value = aws_db_instance.default.db_name }
+output "db_name"      { value = aws_db_instance.default.name }
 output "db_port"      { value = aws_db_instance.default.port }
 output "db_username"  { value = aws_db_instance.default.username }
