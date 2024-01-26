@@ -2,11 +2,11 @@ variable "backup_retention_period"      { default = 30 }
 variable "db_name"                      {  }
 variable "db_username"                  {  }
 variable "db_port"                      { default = 5432 }
-variable "db_engine_version"            { default = "12.8" }
+variable "db_engine_version"            { default = "13.1" }
 variable "db_password"                  {  }
 variable "db_allocated_storage"         { default = 20 }
 variable "db_instance_class"            { default = "db.t2.micro" }
-variable "name"                         { default = "Postgres 12.4 database" }
+variable "name"                         { default = "Postgres database" }
 variable "publicly_accessible"          { default = true }
 variable "subnets"                      {  }
 variable "security_group_ids"           {  }
