@@ -7,7 +7,7 @@ variable "db_password"                  {  }
 variable "db_allocated_storage"         { default = 20 }
 variable "db_instance_class"            { default = "db.t2.micro" }
 variable "name"                         { default = "Postgres database" }
-variable "publicly_accessible"          { default = true }
+variable "publicly_accessible"          { default = false }
 variable "subnets"                      {  }
 variable "security_group_ids"           {  }
 variable "create_snapshot"              { default =  true }
